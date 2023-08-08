@@ -159,6 +159,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
+
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -203,7 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                         ProgressDialog progressDialog = ProgressDialog(
                           context,
-                          title: const  Text('Signing Up'),
+                          title: const  Text('Creating Account'),
                           message: const Text('Please wait'),
                         );
                         progressDialog.show();
@@ -216,24 +217,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           if (userCredential.user != null) {
 
                             // store user information in Firestore database
-                            //
-                            // FirebaseFirestore firestore = FirebaseFirestore.instance;
-                            //
-                            // String uid = userCredential.user!.uid;
-                            // int dt = DateTime.now().millisecondsSinceEpoch;
-                            //
-                            //
-                            // firestore.collection('users').doc(uid).set({
-                            //   'fullName': fullName,
-                            //   'email': email,
-                            //   'uid': uid,
-                            //   'dt': dt,
-                            //   'profileImage': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGrQoGh518HulzrSYOTee8UO517D_j6h4AYQ&usqp=CAU'
-                            // });
-                            //
-                            // Fluttertoast.showToast(msg: 'Success');
+
+                            FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+                            String uid = userCredential.user!.uid;
+                            int dt = DateTime.now().millisecondsSinceEpoch;
+
+                         await firestore.collection('users').doc(uid).set({
+                              'firstName': firstname,
+                              'lastName': lastname,
+                              'email': email,
+                              'password': password,
+                              'uid': uid,
+                              'dt': dt,
+                              'profileImage': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGrQoGh518HulzrSYOTee8UO517D_j6h4AYQ&usqp=CAU'
+                            });
+
+                            Fluttertoast.showToast(msg: 'Success');
 
                             Navigator.of(context).pop();
+
                           } else {
                             Fluttertoast.showToast(msg: 'Failed');
                           }

@@ -10,7 +10,7 @@ class TodoListScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("hallo"),
       ),
-      body: Column(
+      body: const Column(
         children: [
           Text("hallo"),
         ],
