@@ -6,8 +6,15 @@ class TodoListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("hallo"),
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text("hallo"),
+      ),
+      body: Column(
+        children: [
+          Text("hallo"),
+        ],
+      ),
     );
   }
 }
