@@ -6,6 +6,6 @@ class Utility
   {
     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(dt);
 
-    return DateFormat('dd MMM yyyy').format(dateTime);
+    return DateFormat('dd MMM yyyy hh:mm a').format(dateTime);
   }
 }

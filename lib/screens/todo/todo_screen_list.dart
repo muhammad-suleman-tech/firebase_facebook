@@ -35,6 +35,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Task List'),
+        backgroundColor: Colors.deepOrangeAccent[100],
         actions: [
           IconButton(
               onPressed: () {
@@ -129,9 +130,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
                             children: [
                               IconButton(
                                   onPressed: () {
-                                    // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                                    //   return UpdateTaskScreen(documentSnapshot: snapshot.data!.docs[index]);
-                                    // }));
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                                      return UpdateTaskScreen(documentSnapshot: snapshot.data!.docs[index]);
+                                    }));
                                   },
                                   icon: const Icon(
                                     Icons.edit,
