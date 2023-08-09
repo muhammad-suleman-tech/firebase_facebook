@@ -41,7 +41,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
               onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
-                  return const Profile();
+                  return const ProfileScreen();
                 }));
               },
               icon: const Icon(Icons.person)),
