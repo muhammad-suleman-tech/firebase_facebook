@@ -43,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             TextField(
                               controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
                               decoration: const InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
                                   filled: true,
@@ -93,6 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onPressed: () async {
                                     var email = emailController.text.trim();
                                     var password = passwordController.text.trim();
+
                                     if (email.isEmpty || password.isEmpty) {
                                       // show error toast
                                       Fluttertoast.showToast(msg: 'Please fill all fields');
@@ -119,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         progressDialog.dismiss();
                                         Navigator.of(context).pushReplacement(
                                             MaterialPageRoute(builder: (context) {
-                                              return const TodoListScreen();
+                                              return const TaskListScreen();
                                             }));
                                       }
                                     } on FirebaseAuthException catch (e) {

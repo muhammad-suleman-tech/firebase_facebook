@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_todo_app/screens/login_screen.dart';
+import 'package:firebase_todo_app/screens/todo/todo_screen_list.dart';
 import 'package:flutter/material.dart';
 
 
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
+      home: FirebaseAuth.instance.currentUser == null ? const LoginScreen() : const TaskListScreen(),
     );
   }
 }
