@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_todo_app/screens/login_screen.dart';
-import 'package:firebase_todo_app/screens/profile_screen.dart';
 import 'package:firebase_todo_app/screens/todo/add_todo_screen.dart';
 import 'package:firebase_todo_app/screens/todo/update_task_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../utility/utility.dart';
+import '../auth/login_screen.dart';
+import '../auth/profile_screen.dart';
 
 
 class TaskListScreen extends StatefulWidget {

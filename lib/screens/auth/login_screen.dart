@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_todo_app/screens/signup_screen.dart';
+import 'package:firebase_todo_app/screens/auth/signup_screen.dart';
 import 'package:firebase_todo_app/screens/todo/todo_screen_list.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ndialog/ndialog.dart';
+
+import '../home_ui.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -20,20 +22,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.sizeOf(context).height;
+    double width = MediaQuery.sizeOf(context).width;
+
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.purple[50],
-      //   title: const Text('Login Please'),
-      //   centerTitle: true,
-      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset("assets/images/fb.PNG",height: 250,width: double.infinity,fit: BoxFit.fill,),
-              const SizedBox(height: 30,),
+              const SizedBox(height: 10,),
+              Image.asset("assets/images/app_logo.png",fit: BoxFit.fill,height: height*0.08,),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
@@ -41,11 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     Form(
                         child: Column(
                           children: [
-                            TextField(
+                            TextFormField(
                               controller: emailController,
                               keyboardType: TextInputType.emailAddress,
                               decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
                                   filled: true,
                                   fillColor: Color(0xffF5F6F7),
                                   enabledBorder: OutlineInputBorder(
@@ -68,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.black12),),
-                                  contentPadding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
                                   filled: true,
                                   fillColor: Color(0xffF5F6F7),
                                   hintText: 'Password',
@@ -121,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         progressDialog.dismiss();
                                         Navigator.of(context).pushReplacement(
                                             MaterialPageRoute(builder: (context) {
-                                              return const TaskListScreen();
+                                              return const HomeScreenUI();
                                             }));
                                       }
                                     } on FirebaseAuthException catch (e) {

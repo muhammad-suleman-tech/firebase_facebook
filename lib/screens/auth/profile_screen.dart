@@ -1,15 +1,19 @@
 import 'dart:io';
-
+import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_todo_app/screens/home_screen.dart';
+import 'package:firebase_todo_app/screens/home_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ndialog/ndialog.dart';
 
+import '../../Controller/home_screen_controller.dart';
+import '../../utility/utility.dart';
 
-import '../utility/utility.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -20,6 +24,9 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
 
+
+  final HomeScreenController controller = Get.put(HomeScreenController());
+
   DocumentSnapshot? userSnapshot;
   File? imageFile;
   bool showLocalFile = false;
@@ -27,12 +34,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   getUserDetails() async {
 
     String uid = FirebaseAuth.instance.currentUser!.uid;
-    print(uid);
     userSnapshot =  await FirebaseFirestore.instance.collection('users').doc(uid).get();
-
-     print(userSnapshot!.id);
     setState(() {
-
     });
   }
 
@@ -70,6 +73,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       String profileImageUrl = await snapshot.ref.getDownloadURL();
 
+      controller.imageGet.value = false;
+
       String uid = FirebaseAuth.instance.currentUser!.uid;
       await FirebaseFirestore.instance
           .collection('users')
@@ -77,21 +82,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           .update({'profileImage': profileImageUrl});
 
       Fluttertoast.showToast(msg: 'Profile image uploaded');
- showLocalFile = false;
-      print(profileImageUrl);
-
+       showLocalFile = false;
       progressDialog.dismiss();
     } catch (e) {
       progressDialog.dismiss();
-
-      print(e.toString());
     }
   }
 
   @override
   void initState() {
     super.initState();
-    print("init function");
     getUserDetails();
   }
 
@@ -196,7 +196,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               style: const TextStyle(fontSize: 18),
                             ),
                           ],
-                        )
+                        ),
+
+                        IconButton(onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const HomeScreenUI()),
+                          );
+                        }, icon: const Icon(Icons.person))
+
                       ],
                     ),
                   ),
