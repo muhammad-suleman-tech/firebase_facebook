@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_todo_app/screens/auth/update_profile.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,7 +26,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
 
 
-  final HomeScreenController controller = Get.put(HomeScreenController());
+
 
   DocumentSnapshot? userSnapshot;
   File? imageFile;
@@ -73,7 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       String profileImageUrl = await snapshot.ref.getDownloadURL();
 
-      controller.imageGet.value = false;
+      profileController.imageGet.value = false;
 
       String uid = FirebaseAuth.instance.currentUser!.uid;
       await FirebaseFirestore.instance
@@ -94,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     getUserDetails();
   }
-
+  final HomeScreenController profileController = Get.put(HomeScreenController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,6 +166,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             const Text("Name :",style: TextStyle(fontSize: 18),),
                             Row(
                               children: [
+
                                 Text(
                                   userSnapshot!['firstName'],
                                   style: const TextStyle(fontSize: 18),
@@ -173,6 +175,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   userSnapshot!['lastName'],
                                   style: const TextStyle(fontSize: 18),
                                 ),
+                                // Obx(() => Text(profileController.firstName.toString(), style: const TextStyle(fontSize: 18), )  ),
+                                // Obx(() => Text(profileController.lastName.toString(), style: const TextStyle(fontSize: 18), )  ),
                               ],
                             ),
                           ],
@@ -210,6 +214,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
+
+             ElevatedButton(onPressed: (){
+               Navigator.push(
+                 context,
+                 MaterialPageRoute(builder: (context) => const UpdateProfileScreen()),
+               );
+             }, child: const Text("Update Profile") )
             ],
           ),
         ));

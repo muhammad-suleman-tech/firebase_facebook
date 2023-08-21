@@ -159,7 +159,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),

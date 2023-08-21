@@ -39,6 +39,7 @@ class _HomeScreenDesignState extends State<HomeScreenDesign> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               pinned: false,
               flexibleSpace: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -88,7 +89,7 @@ class _HomeScreenDesignState extends State<HomeScreenDesign> {
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                              image: NetworkImage(controller.imageFile) )
+                              image:  controller.imageGet.value ?   NetworkImage(controller.imageFile) : const NetworkImage("https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80")  )
                         ),
                         child: Align(
                           alignment: Alignment.bottomCenter,

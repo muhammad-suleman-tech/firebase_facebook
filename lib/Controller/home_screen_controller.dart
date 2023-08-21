@@ -7,6 +7,8 @@ class HomeScreenController extends GetxController {
 
   RxBool imageGet = false.obs;
   String imageFile = "";
+  RxString firstName = "".obs;
+  RxString lastName = "".obs;
 
   DocumentSnapshot? userSnapshot;
 
@@ -17,6 +19,8 @@ class HomeScreenController extends GetxController {
     userSnapshot =  await FirebaseFirestore.instance.collection('users').doc(uid).get();
      imageGet.value = true;
      imageFile = userSnapshot!['profileImage'];
+     firstName = userSnapshot!['firstName'];
+     lastName  = userSnapshot!['lastName'];
   }
 
 }
