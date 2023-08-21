@@ -1,6 +1,7 @@
 import 'package:firebase_todo_app/components/customIconButton.dart';
 import 'package:firebase_todo_app/screens/home_screen.dart';
 import 'package:firebase_todo_app/screens/todo/todo_screen_list.dart';
+import 'package:firebase_todo_app/screens/view/notifications.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreenUI extends StatefulWidget {
@@ -52,7 +53,9 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                 HomeScreenDesign(),
                 TaskListScreen(),
                 Text("home"),
-                Text("home"),Text("home"),Text("home"),
+                Text("home"),
+                NotificationsScreen(),
+                Text("home"),
               ],
             ),
           )
